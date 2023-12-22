@@ -5,6 +5,8 @@ const atividades = [];
 const notas = [];
 const spanAprovado = '<span class="Resultado aprovado">Aprovado</span>'; 
 const spanReprovado = '<span class="Resultado reprovado">Reprovado</span>';
+const notaMinima = parseFloat(prompt("Digite a nota mínima:"));
+
 let linhas = '';
 
 form.addEventListener('submit', function(e) {
@@ -26,7 +28,7 @@ function adicionaLinha() {
     let linha = '<tr>';
     linha += `<td> ${inputNomeAtividade.value}</td>`;
     linha += `<td>${inputNotaAtividade.value}</td>`;
-    linha += `<td>${inputNotaAtividade.value >= 7 ? imgAprovado : imgReprovado}</td>`;
+    linha += `<td>${inputNotaAtividade.value >= notaMinima ? imgAprovado : imgReprovado}</td>`;
     linha += "</tr>";
 
     linhas += linha;
@@ -43,7 +45,7 @@ function atualizaTabela() {
 function atualizaMediaFinal() {
     const mediaFinal = calculaMediaFinal();
     document.getElementById('media-final-valor').innerHTML = mediaFinal;
-    document.getElementById('media-final-resultado').innerHTML = mediaFinal >= 7 ? spanAprovado : spanReprovado;
+    document.getElementById('media-final-resultado').innerHTML = mediaFinal >= notaMinima ? spanAprovado : spanReprovado;
 }
 
 function calculaMediaFinal() {
